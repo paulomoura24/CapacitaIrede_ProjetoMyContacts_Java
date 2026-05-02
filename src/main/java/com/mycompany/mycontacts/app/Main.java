@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mycontacts.app;
+package com.mycompany.mycontacts.app;
 
-import mycontacts.controller.Agenda;
-import mycontacts.model.Contato;
-import mycontacts.model.ContatoComercial;
-import mycontacts.exceptions.ContatoNaoEncontradoException;
-import mycontacts.utils.ValidadorEmail;
+import java.util.List;
+import com.mycompany.mycontacts.service.Agenda;
+import com.mycompany.mycontacts.domain.Contato;
+import com.mycompany.mycontacts.domain.ContatoComercial;
+import com.mycompany.mycontacts.exception.ContatoNaoEncontradoException;
+import com.mycompany.mycontacts.validation.ValidadorEmail;
 
 import java.util.Scanner;
 
@@ -63,18 +64,28 @@ public class Main {
                             System.out.println("Contato adicionado com sucesso!");
                         }
                         
-                        case 2 -> agenda.listarContatos();
+                        case 2 -> {
+                            List<Contato> lista = agenda.listarContatos();
+                            if (lista.isEmpty()) {
+                                System.out.println("Nenhum contato cadastrado");
+                            } else {
+                                lista.forEach(System.out::println);
+                            }
+                        }
                         
                         case 3 -> {
                             System.out.print("Digite o nome: ");
                             String busca = scanner.nextLine();
-                            System.out.println(agenda.buscarPorNome(busca));
+                            Contato c = agenda.buscarPorNome(busca);
+                            System.out.println(c);
                         }
 
                         case 4 -> {
-                            System.out.print("Digite o nome: ");
-                            String remover = scanner.nextLine();
-                            agenda.removerContato(remover);
+                            System.out.print("Digite o nome para remover: ");
+                            String nomeRemover = scanner.nextLine();
+                            Contato c = agenda.buscarPorNome(nomeRemover);
+                            agenda.removerContato(c);
+                            System.out.println("Contato removido com sucesso");
                         }
                         
                         case 5 -> System.out.println("Encerrando...");

@@ -1,0 +1,82 @@
+/* ============================================
+   VARIÁVEIS E ESTILOS GLOBAIS
+   ============================================ */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-base: #f4f7f6;
+    -fx-accent: #3498db;
+    -fx-focus-color: #3498db;
+    -fx-font-size: 13px; /* Aumentado para melhor legibilidade */
+}
+
+/* ============================================
+   CAMPOS DE TEXTO E INPUTS
+   ============================================ */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 1);
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 1.5;
+}
+
+/* ============================================
+   BOTÕES (MODERNIZADOS)
+   ============================================ */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-transition: 0.3s;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.button#salvarButton { -fx-background-color: #27ae60; }
+.button#salvarButton:hover { -fx-background-color: #219150; }
+
+.button#removerButton { -fx-background-color: #e74c3c; }
+.button#removerButton:hover { -fx-background-color: #c0392b; }
+
+/* ============================================
+   TABELA (ESTILO CLEAN)
+   ============================================ */
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2c3e50;
+    -fx-background-radius: 6 6 0 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #d6eaf8;
+}
+
+/* ============================================
+   CONTAINER DE DETALHES
+   ============================================ */
+.details-panel {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 8;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mycontacts.utils;
+package com.mycompany.mycontacts.validation;
 
 import java.util.regex.Pattern;
 
@@ -19,3 +19,4 @@ public class ValidadorEmail {
         return pattern.matcher(email).matches();
     }
 }
+

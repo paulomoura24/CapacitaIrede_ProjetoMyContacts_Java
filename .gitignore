@@ -1,0 +1,27 @@
+# Maven
+/target/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# Logs
+*.log
+
+# Java
+*.class
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Config local
+.env
+*.properties.local
+
+# Banco local
+*.db
+*.h2.db

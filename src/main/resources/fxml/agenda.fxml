@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.mycompany.mycontacts.ui.AgendaController">
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #3a4b76;">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Busca por nome:" />
+            <TextField fx:id="buscaField" prefHeight="25.0" prefWidth="255.0" promptText="Digite parte do nome" />
+            <Button onAction="#onBuscarAction" text="Buscar" />
+            <Button onAction="#onMostrarTodosAction" text="Mostrar todos" />
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <HBox spacing="10">
+                <TableView fx:id="tableContatos" prefHeight="320.0" prefWidth="520.0">
+                    <columns>
+                        <TableColumn fx:id="columnNome" prefWidth="180.0" text="Nome" />
+                        <TableColumn fx:id="columnTelefone" prefWidth="140.0" text="Telefone" />
+                        <TableColumn fx:id="columnEmail" prefWidth="200.0" text="Email" />
+                        <TableColumn fx:id="columnEmpresa" prefWidth="180.0" text="Empresa" />
+                    </columns>
+                </TableView>
+                <VBox prefWidth="240.0" spacing="10" style="-fx-background-color: white; -fx-border-color: #c0c8d6; -fx-border-radius: 6; -fx-padding: 12;">
+                    <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Detalhes do contato" />
+                    <Label text="ID:" />
+                    <Label fx:id="detalhesIdLabel" text="-" />
+                    <Label text="Tipo:" />
+                    <Label fx:id="detalhesTipoLabel" text="-" />
+                    <Label text="Nome:" />
+                    <Label fx:id="detalhesNomeLabel" text="-" />
+                    <Label text="Telefone:" />
+                    <Label fx:id="detalhesTelefoneLabel" text="-" />
+                    <Label text="Email:" />
+                    <Label fx:id="detalhesEmailLabel" text="-" />
+                    <Label text="Empresa:" />
+                    <Label fx:id="detalhesEmpresaLabel" text="-" />
+                </VBox>
+            </HBox>
+            <Label fx:id="feedbackLabel" text="Bem-vindo ao MyContacts" />
+        </VBox>
+    </center>
+    <bottom>
+        <VBox spacing="10" style="-fx-background-color: #f5f5f8;">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <GridPane hgap="10" vgap="10">
+                <Label text="Nome:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="nomeField" prefHeight="25.0" prefWidth="408.0" promptText="Nome completo" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Telefone:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="telefoneField" promptText="(xx) xxxx-xxxx" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="emailField" promptText="email@exemplo.com" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label text="Empresa (opcional):" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="empresaField" promptText="Empresa" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <columnConstraints>
+               <ColumnConstraints />
+               <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
+            <HBox spacing="10">
+                <Button fx:id="salvarButton" onAction="#onSalvarAction" prefHeight="25.0" prefWidth="160.0" text="Salvar contato" />
+                <Button fx:id="removerButton" onAction="#onRemoverAction" prefHeight="25.0" prefWidth="180.0" text="Remover selecionado" />
+                <Button fx:id="novoButton" onAction="#onNovoAction" prefHeight="25.0" prefWidth="160.0" text="Novo contato" />
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
