@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class RepositorioGenerico<T extends Contato> {
+public class ContatoMemoryRepository<T extends Contato> {
 
     private final List<T> itens = new ArrayList<>();
 
