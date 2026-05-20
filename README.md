@@ -1,128 +1,195 @@
 # 📇 MyContacts
 
-Sistema de gerenciamento de contatos desenvolvido em **Java**, com foco em organização modular, boas práticas de programação orientada a objetos e separação de responsabilidades.
+Sistema de gerenciamento de contatos desenvolvido em **Java com JavaFX**, utilizando **MySQL para persistência de dados**, com foco em boas práticas de arquitetura, organização em camadas e experiência de usuário.
 
 ---
 
 ## 📌 Sobre o Projeto
 
-O **MyContacts** é uma aplicação de console que permite:
+O **MyContacts** é uma aplicação desktop que permite o cadastro, busca, atualização e remoção de contatos pessoais e comerciais. A aplicação possui uma **interface gráfica construída com JavaFX** e utiliza **banco de dados MySQL** para armazenamento persistente das informações.
 
-* ➕ Cadastrar contatos
-* 🔍 Buscar contatos por nome
-* 📋 Listar todos os contatos
-* ❌ Tratar exceções personalizadas
-* ✔ Validar e-mails
-
-O projeto foi estruturado utilizando conceitos fundamentais de **POO**, como:
-
-* Encapsulamento
-* Herança
-* Polimorfismo
-* Tratamento de exceções
-* Organização por pacotes
+O projeto foi estruturado seguindo princípios de separação de responsabilidades, facilitando manutenção, escalabilidade e evolução.
 
 ---
 
-## 🏗 Estrutura do Projeto
+## 🖥️ Interface Gráfica (JavaFX)
 
-```
-mycontacts/
-├── app/
-│   └── Main.java
-├── controller/
-│   └── Agenda.java
-├── model/
-│   ├── Contato.java
-│   └── ContatoComercial.java
-├── exceptions/
-│   └── ContatoNaoEncontradoException.java
-└── utils/
-    └── ValidadorEmail.java
-```
+A aplicação conta com uma interface gráfica desenvolvida com **JavaFX**, utilizando arquivos FXML para definição das telas e controllers para controle da lógica.
 
-### 📂 Descrição dos Pacotes
+### Principais características da UI:
 
-* **app** → Classe principal responsável pela execução do sistema.
-* **controller** → Gerencia as regras de negócio da agenda.
-* **model** → Representação das entidades do sistema.
-* **exceptions** → Exceções personalizadas.
-* **utils** → Classes utilitárias (validação de e-mail).
+* 🎨 Interface amigável e responsiva
+* 🧩 Separação entre layout (FXML) e lógica (Controller)
+* 🔄 Atualização dinâmica de dados
+* 📋 Listagem de contatos em componentes visuais
+* 🖱️ Interação via eventos e formulários
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## 🗄️ Persistência de Dados (MySQL)
 
-* Java 8+
-* Programação Orientada a Objetos (POO)
-* Regex para validação
-* Estrutura modular por pacotes
-* IDE recomendada: NetBeans ou VS Code
+O sistema utiliza o **MySQL** como banco de dados relacional, garantindo persistência, integridade e eficiência no armazenamento das informações.
+
+### Características da persistência:
+
+* 💾 Armazenamento em banco relacional (MySQL)
+* 🔗 Conexão via JDBC
+* 📂 Camada Repository/DAO para acesso a dados
+* 🔄 Operações CRUD completas
+* ⚙️ Configuração externa via arquivo `.properties`
 
 ---
 
-## ▶ Como Executar o Projeto
+## 🏗️ Arquitetura do Projeto
 
-### 1️⃣ Clonar o repositório
+O projeto segue uma arquitetura em camadas:
 
-```
-git clone https://github.com/seu-usuario/mycontacts.git
-```
+```text id="cpgm6z"
+src/main/java/com/mycompany/mycontacts/
+│
+├── app/            # Classe principal (JavaFX Application)
+├── config/         # Configuração do banco (MySQL/JDBC)
+├── domain/         # Entidades do sistema
+├── exception/      # Exceções customizadas
+├── repository/     # Acesso a dados (DAO)
+├── service/        # Regras de negócio
+├── ui/             # Controllers JavaFX
+└── validation/     # Validações
 
-### 2️⃣ Abrir na IDE
-
-* Abra o projeto no **NetBeans** ou **VS Code**
-* Certifique-se de que o JDK está configurado
-
-### 3️⃣ Executar
-
-Execute a classe:
-
-```
-Main.java
+src/main/resources/
+│
+├── fxml/           # Telas (FXML)
+├── styles/         # CSS
+└── db.properties   # Configuração do banco
 ```
 
 ---
 
-## 💡 Funcionalidades Implementadas
+## 🧩 Tecnologias Utilizadas
 
-* Cadastro de contatos comuns e comerciais
-* Busca por nome (case insensitive)
-* Listagem formatada
-* Validação básica de e-mail
-* Exceção personalizada para contato não encontrado
-* Tratamento de entradas inválidas
-
----
-
-## 🔒 Boas Práticas Aplicadas
-
-* Programação orientada a interfaces
-* Uso de `List` ao invés de implementação concreta
-* Encapsulamento de atributos
-* Tratamento adequado de exceções
-* Separação entre regras de negócio e exibição
+* Java 21+
+* JavaFX
+* Maven
+* MySQL
+* JDBC
+* FXML
+* CSS
+* Padrão DAO
+* Arquitetura em camadas
 
 ---
 
-## 🔮 Melhorias Futuras
+## ⚙️ Funcionalidades
 
-* Persistência em arquivo (CSV ou JSON)
-* Integração com banco de dados
-* Transformação em API REST com Spring Boot
-* Interface gráfica (JavaFX ou Web)
-* Implementação de testes unitários com JUnit
+* 📌 Cadastro de contatos
+* 🔍 Busca de contatos
+* ✏️ Atualização de dados
+* ❌ Remoção de contatos
+* 📧 Validação de e-mail
+* 🧾 Contatos comerciais
+* 🖥️ Interface gráfica interativa
+* 💾 Persistência em banco MySQL
+
+---
+
+## 🚀 Como Executar o Projeto
+
+### Pré-requisitos
+
+* Java JDK 21 ou superior
+* Maven
+* MySQL instalado e em execução
+
+---
+
+### 🛠️ Configuração do Banco de Dados
+
+1. Crie o banco no MySQL:
+
+```sql id="x61x7t"
+CREATE DATABASE mycontacts;
+```
+
+2. Configure o arquivo:
+
+```text id="z6vclb"
+src/main/resources/db.properties
+```
+
+3. Exemplo de configuração:
+
+```properties id="3eh3yf"
+db.url=jdbc:mysql://localhost:3306/mycontacts
+db.user=root
+db.password=senha
+```
+
+---
+
+### ▶️ Execução
+
+```bash id="rzapz6"
+mvn clean install
+mvn javafx:run
+```
+
+---
+
+## 🧪 Melhorias Futuras
+
+* Testes automatizados (JUnit)
+* Migração para JPA/Hibernate
+* API REST com Spring Boot
+* Deploy em nuvem
+* Sistema de autenticação
+
+---
+
+## 📄 Tratamento de Exceções
+
+* `ContatoNaoEncontradoException`
+
+---
+
+## 📐 Boas Práticas Aplicadas
+
+* Separação de responsabilidades (SRP)
+* Arquitetura em camadas
+* DAO para persistência
+* Uso de JDBC com configuração externa
+* Interface desacoplada da lógica
+* Código modular e reutilizável
+
+---
+
+## 🤝 Contribuição
+
+1. Fork do projeto
+2. Crie uma branch (`feature/minha-feature`)
+3. Commit suas alterações
+4. Push
+5. Abra um Pull Request
+
+---
+
+## 📜 Licença
+
+Licença MIT.
 
 ---
 
 ## 👨‍💻 Autor
 
 **Paulo Sérgio Queiroz Moura**
-Graduando em Análise e Desenvolvimento de Sistemas
 
 ---
 
-## 📄 Licença
+## ⭐ Considerações Finais
 
-Este projeto foi desenvolvido para fins acadêmicos e de estudo.
+O **MyContacts** demonstra a construção de uma aplicação desktop completa, integrando:
 
+* Interface gráfica com JavaFX
+* Arquitetura organizada em camadas
+* Persistência com MySQL via JDBC
+
+Servindo como uma excelente base para projetos profissionais em Java e evolução para sistemas mais robustos.
