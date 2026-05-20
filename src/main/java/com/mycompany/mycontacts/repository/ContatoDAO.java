@@ -59,7 +59,7 @@ public class ContatoDAO implements GenericRepository<Contato, Integer> {
 
     private Contato inserir(Contato contato) {
         String sql = "INSERT INTO contatos(nome, telefone, email, empresa, tipo) VALUES (?, ?, ?, ?, ?)";
-        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = DatabaseConnection.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, contato.getNome());
             statement.setString(2, contato.getTelefone());
             statement.setString(3, contato.getEmail());
@@ -67,12 +67,30 @@ public class ContatoDAO implements GenericRepository<Contato, Integer> {
             statement.setString(5, getTipo(contato));
             statement.executeUpdate();
 
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                if (keys.next()) {
-                    return recriarContato(contato, keys.getInt(1));
+            int id = -1;
+            // Se for SQLite, pega o id com SELECT last_insert_rowid()
+            if (!DatabaseConnection.isMySql()) {
+                try (PreparedStatement stmtId = connection.prepareStatement("SELECT last_insert_rowid()")) {
+                    try (ResultSet rs = stmtId.executeQuery()) {
+                        if (rs.next()) {
+                            id = rs.getInt(1);
+                        }
+                    }
                 }
-                throw new SQLException("Falha ao obter chave gerada para contato.");
+            } else {
+                // MySQL
+                try (PreparedStatement stmtId = connection.prepareStatement("SELECT LAST_INSERT_ID()")) {
+                    try (ResultSet rs = stmtId.executeQuery()) {
+                        if (rs.next()) {
+                            id = rs.getInt(1);
+                        }
+                    }
+                }
             }
+            if (id != -1) {
+                return recriarContato(contato, id);
+            }
+            throw new SQLException("Falha ao obter chave gerada para contato.");
         } catch (SQLException e) {
             throw new RuntimeException("Falha ao salvar contato.", e);
         }

@@ -15,7 +15,7 @@ public class ContatoComercial extends Contato {
     public ContatoComercial(String nome, String telefone, String email, String empresa) {
         this(null, nome, telefone, email, empresa);
     }
-
+    @Override
     public String getEmpresa() {
         return empresa;
     }

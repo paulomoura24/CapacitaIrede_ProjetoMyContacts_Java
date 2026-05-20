@@ -7,11 +7,11 @@ package com.mycompany.mycontacts.service;
 import com.mycompany.mycontacts.exception.ContatoNaoEncontradoException;
 import com.mycompany.mycontacts.domain.Buscavel;
 import com.mycompany.mycontacts.domain.Contato;
-import com.mycompany.mycontacts.repository.RepositorioGenerico;
+import com.mycompany.mycontacts.repository.ContatoMemoryRepository;
 import java.util.List;
 
 public class Agenda implements Buscavel {
-    private final RepositorioGenerico<Contato> repositorio = new RepositorioGenerico<>();
+    private final ContatoMemoryRepository<Contato> repositorio = new ContatoMemoryRepository<>();
 
     public void adicionarContato(Contato contato) {
         repositorio.adicionar(contato);
