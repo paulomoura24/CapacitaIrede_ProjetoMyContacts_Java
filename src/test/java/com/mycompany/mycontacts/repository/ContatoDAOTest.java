@@ -7,9 +7,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,20 +14,47 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ContatoDAOTest {
+    @Test
+    void deveInserirContato() {
+        Contato contato = new Contato("Carlos", "11911112222", "carlos@teste.com");
+        Contato salvo = contatoDAO.salvar(contato);
+        assertNotNull(salvo.getId());
+        assertEquals("Carlos", salvo.getNome());
+    }
+
+    @Test
+    void deveRemoverContato() {
+        Contato contato = new Contato("Marina", "21933334444", "marina@teste.com");
+        Contato salvo = contatoDAO.salvar(contato);
+        assertNotNull(salvo.getId());
+        contatoDAO.excluir(salvo.getId());
+        List<Contato> resultados = contatoDAO.buscarPorNome("Marina");
+        assertEquals(0, resultados.size());
+    }
+
+    @Test
+    void deveBuscarContatoPorNome() {
+        contatoDAO.salvar(new Contato("Lucas", "31955556666", "lucas@teste.com"));
+        contatoDAO.salvar(new Contato("Luciana", "31977778888", "luciana@teste.com"));
+        List<Contato> resultados = contatoDAO.buscarPorNome("Luc");
+        assertEquals(2, resultados.size());
+        assertTrue(resultados.stream().anyMatch(c -> c.getNome().equals("Lucas")));
+        assertTrue(resultados.stream().anyMatch(c -> c.getNome().equals("Luciana")));
+    }
 
     private ContatoDAO contatoDAO;
 
     @BeforeEach
-    void setUp() {
-        DatabaseConnection.setDatabaseUrl("jdbc:mysql://localhost:3306/mycontacts");
+    void setUp() throws Exception {
+        // Usando arquivo temporário SQLite para garantir a mesma base durante o teste
+        String tempDb = java.nio.file.Files.createTempFile("contatos-test", ".db").toAbsolutePath().toString();
+        DatabaseConnection.setDatabaseUrl("jdbc:sqlite:" + tempDb);
         contatoDAO = new ContatoDAO();
     }
 
     @AfterEach
-    void tearDown() throws SQLException {
-        try (Connection connection = DatabaseConnection.getConnection(); Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DROP TABLE IF EXISTS contatos");
-        }
+    void tearDown() {
+        // Nada a fazer, o arquivo temporário será removido pelo sistema operacional
     }
 
     @Test
