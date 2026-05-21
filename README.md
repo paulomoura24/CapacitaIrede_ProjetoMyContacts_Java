@@ -4,6 +4,25 @@ Sistema de gerenciamento de contatos desenvolvido em **Java com JavaFX**, utiliz
 
 ---
 
+## 📑 Sumário
+1.Sobre o Projeto
+2.Interface Gráfica (JavaFX)
+3.Persistência de Dados (MySQL)
+4.Arquitetura do Projeto
+5.Tecnologias Utilizadas
+6.Funcionalidades
+7.Como Executar o Projeto
+8.Testes
+9.Melhorias Futuras
+10.Tratamento de Exceções
+11.Boas Práticas Aplicadas
+12.Contribuição
+13.Licença
+14.Autor
+15.Considerações Finais
+
+---
+
 ## 📌 Sobre o Projeto
 
 O **MyContacts** é uma aplicação desktop que permite o cadastro, busca, atualização e remoção de contatos pessoais e comerciais. A aplicação possui uma **interface gráfica construída com JavaFX** e utiliza **banco de dados MySQL** para armazenamento persistente das informações.
@@ -132,6 +151,16 @@ db.password=senha
 mvn clean install
 mvn javafx:run
 ```
+Se ocorrer erro de conexão, verifique as configurações do arquivo `db.properties` e se o MySql está ativo.
+
+---
+
+## 🧪 Testes
+O projeto inclui testes automatizados com JUnit. Para execultá-los:
+```bash
+mvn test
+```
+Os relatórios de teste são gerados em `surefire-reports`.
 
 ---
 
