@@ -5,21 +5,23 @@ Sistema de gerenciamento de contatos desenvolvido em **Java com JavaFX**, utiliz
 ---
 
 ## 📑 Sumário
-1.Sobre o Projeto
-2.Interface Gráfica (JavaFX)
-3.Persistência de Dados (MySQL)
-4.Arquitetura do Projeto
-5.Tecnologias Utilizadas
-6.Funcionalidades
-7.Como Executar o Projeto
-8.Testes
-9.Melhorias Futuras
-10.Tratamento de Exceções
-11.Boas Práticas Aplicadas
-12.Contribuição
-13.Licença
-14.Autor
-15.Considerações Finais
+<ol>
+  <li>Sobre o Projeto</li>
+  <li>Interface Gráfica (JavaFX)</li>
+  <liPersistência de Dados (MySQL)></li>
+  <li>Arquitetura do Projeto</li>
+  <li>Tecnologias Utilizadas</li>
+  <li>Funcionalidades</li>
+  <li>Como Executar o Projeto</li>
+  <li>Testes</li>
+  <li>Melhorias Futuras</li>
+  <li>Tratamento de Exceções</li>
+  <li>Boas Práticas Aplicadas</li>
+  <li>Contribuição</li>
+  <li>Licença</li>
+  <liAutor></li>
+  <li>Considerações Finais</li>   
+</ol>
 
 ---
 
